@@ -1,0 +1,43 @@
+export const questionsList: IQuestion[] = [
+  {
+    id: 0,
+    title: "Название",
+    architect: "Архитектор",
+    century: "Век",
+    country: "Страна",
+    city: "Город",
+  },
+  {
+    id: 1,
+    title: "План города Милет",
+    architect: "Гипподам",
+    century: "2 до н. э.",
+    country: "Турция",
+    city: "полис Ионии",
+  },
+  {
+    id: 2,
+    title: "Римские форумы. План",
+    architect: "-",
+    century: "-",
+    country: "Италия",
+    city: "Рим",
+  },
+  {
+    id: 3,
+    title: "План Ламбезиса",
+    architect: "-",
+    century: "2 н. э.",
+    country: "-",
+    city: "-",
+  },
+  {
+    id: 4,
+    title: "Мон-Сен-Мишель",
+    architect: "-",
+    century: "-",
+    country: "Франция",
+    city: "Норманидия",
+    other: "Остров-крепость",
+  },
+];

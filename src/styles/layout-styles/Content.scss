@@ -1,0 +1,29 @@
+.react-content {
+  position: relative;
+
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+
+  .wrapper {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+
+    display: flex;
+    flex-direction: column;
+
+    overflow-y: auto;
+  }
+
+  .react-content-wrapper {
+    flex: 1;
+
+    display: grid;
+    place-items: center;
+
+    position: relative;
+  }
+}

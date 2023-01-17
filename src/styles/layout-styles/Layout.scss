@@ -1,0 +1,11 @@
+@import "./Header.scss";
+@import "./Content.scss";
+@import "./Footer.scss";
+
+.react-layout {
+  width: 100%;
+  min-height: 100vh;
+
+  display: flex;
+  flex-direction: column;
+}
