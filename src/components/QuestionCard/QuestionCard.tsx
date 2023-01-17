@@ -11,6 +11,7 @@ import {
   styled,
   IconButton,
   IconButtonProps,
+  Skeleton,
 } from "@mui/material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { questionsList } from "../../data/questions";
@@ -37,6 +38,7 @@ interface IQuestionCardProps {
 }
 
 const QuestionCard: FC<IQuestionCardProps> = ({ numOfQuestion }) => {
+  const [isLoading, setIsLoading] = useState(true);
   const [show, setShow] = useState(false);
 
   const { id } = questionsList[numOfQuestion];
@@ -76,7 +78,19 @@ const QuestionCard: FC<IQuestionCardProps> = ({ numOfQuestion }) => {
   return (
     <>
       <Card>
-        <CardMedia component={"img"} image={`./imgs/${id}.png`} height={300} />
+        <CardMedia
+          component={"img"}
+          image={`./imgs/${id}.png`}
+          height={300}
+          style={{ display: isLoading ? "none" : "block" }}
+          onLoad={() => {
+            console.log("loaded");
+            setIsLoading(false);
+          }}
+        />
+        {isLoading && (
+          <Skeleton variant="rectangular" height={400} animation="wave" />
+        )}
         <CardActions style={{ justifyContent: "center" }}>
           <ExpandMore
             expand={show}
