@@ -15,6 +15,7 @@ import {
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { questionsList } from "../../data/questions";
 import Typography from "@mui/material/Typography";
+import { v4 as uuidv4 } from "uuid";
 
 interface ExpandMoreProps extends IconButtonProps {
   expand: boolean;
@@ -37,13 +38,35 @@ interface IQuestionCardProps {
 
 const QuestionCard: FC<IQuestionCardProps> = ({ numOfQuestion }) => {
   const [show, setShow] = useState(false);
-  console.log(numOfQuestion);
 
-  const { id, title, country, city, architect, century } =
-    questionsList[numOfQuestion];
+  const { id } = questionsList[numOfQuestion];
 
   const toggleShow = () => {
     setShow(!show);
+  };
+
+  const getListItems = () => {
+    return Object.keys(questionsList[numOfQuestion]).map((key) => {
+      return (
+        <>
+          {key === "id" ? (
+            <ListItem key={uuidv4()}>
+              <ListItemText
+                primary={questionsList[numOfQuestion][key]}
+                secondary={"Номер вопроса"}
+              />
+            </ListItem>
+          ) : (
+            <ListItem key={uuidv4()}>
+              <ListItemText
+                primary={questionsList[numOfQuestion][key]}
+                secondary={questionsList[0][key]}
+              />
+            </ListItem>
+          )}
+        </>
+      );
+    });
   };
 
   useEffect(() => {
@@ -67,41 +90,7 @@ const QuestionCard: FC<IQuestionCardProps> = ({ numOfQuestion }) => {
         <Collapse in={show} unmountOnExit>
           <CardContent>
             <List style={{ maxHeight: "300px", overflow: "auto" }}>
-              <ListItem>
-                <ListItemText
-                  primary={title}
-                  secondary={questionsList[0].title}
-                />
-              </ListItem>
-              <ListItem>
-                <ListItemText
-                  primary={country}
-                  secondary={questionsList[0].country}
-                />
-              </ListItem>
-              <ListItem>
-                <ListItemText
-                  primary={city}
-                  secondary={questionsList[0].city}
-                />
-              </ListItem>
-              <ListItem>
-                <ListItemText
-                  primary={architect}
-                  secondary={questionsList[0].architect}
-                />
-              </ListItem>
-              <ListItem>
-                <ListItemText
-                  primary={century}
-                  secondary={questionsList[0].century}
-                />
-              </ListItem>
-              {questionsList[numOfQuestion].other && (
-                <ListItem>
-                  <Typography>{questionsList[numOfQuestion].other}</Typography>
-                </ListItem>
-              )}
+              {getListItems().map((item) => item)}
             </List>
           </CardContent>
         </Collapse>

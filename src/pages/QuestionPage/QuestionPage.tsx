@@ -1,4 +1,4 @@
-import { FC, useState, memo, useCallback, useEffect } from "react";
+import { FC, useState, memo } from "react";
 import QuestionCard from "../../components/QuestionCard/QuestionCard";
 import { questionsList } from "../../data/questions";
 import { range, shuffle } from "../../utils";
@@ -11,8 +11,6 @@ import { Button } from "@mui/material";
 import Badge from "@mui/material/Badge";
 
 const QuestionPage: FC = () => {
-  console.log("QP render");
-
   const [questionsOrder, setQuestionsOrder] = useState(
     shuffle<number>(range(questionsList.length, 1))
   );
@@ -33,10 +31,6 @@ const QuestionPage: FC = () => {
 
     setOrderIndex((prev) => prev - 1);
   };
-
-  useEffect(() => {
-    console.log(questionsOrder, orderIndex);
-  }, [questionsOrder, orderIndex]);
 
   return (
     <>

@@ -1,4 +1,5 @@
 import React, { useRef, useEffect } from "react";
+import { useInView } from "react-intersection-observer";
 import { useLocation } from "react-router-dom";
 import Footer from "./Footer";
 
